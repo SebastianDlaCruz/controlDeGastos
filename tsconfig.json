@@ -1,0 +1,64 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@adapters/*": [
+        "./src/adapters/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@context/*": [
+        "./src/context/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@intercepts/*": [
+        "./src/intercepts/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@utilities/*": [
+        "./src/utilities/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@ts/*": [
+        "./src/types/*"
+      ],
+      "@fireFB/*": [
+        "./src/firebase/*"
+      ]
+    },
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
