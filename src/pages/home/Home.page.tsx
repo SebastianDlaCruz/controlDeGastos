@@ -1,26 +1,23 @@
-import { Box, Text } from "@chakra-ui/react";
-import { UseAuth } from "@hooks/index.hook";
+import { Box } from "@chakra-ui/react";
+import NavBar from "@components/NavBar";
+import { Outlet, useLocation } from "react-router-dom";
+import Index from "./components/Index";
 const Home = () => {
-
-  const { state } = UseAuth();
-
   document.title = "Control de gastos";
+
+  const { pathname } = useLocation();
+
+
 
   return (
     <Box bg={"blackAlpha.800"}
       minH={"100vh"}
       color={"whiteAlpha.900"}
     >
-
-      <Box as="header" textAlign={"center"}
-        padding={"33px 0"}>
-
-        <Text as="h1" fontSize={"3xl"}> Bienvenido {state.name}</Text>
-
-
-      </Box>
-
-
+      <NavBar />
+      {pathname === "/"
+        ? (<Index />)
+        : (<Outlet />)}
     </Box>
   )
 }

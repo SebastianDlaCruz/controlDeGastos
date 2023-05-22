@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const UseAuth = () => {
+const UserAuth = () => {
 
   const { state, dispatch } = useContext(UserContext);
   const navigate = useNavigate();
@@ -24,10 +24,12 @@ export const UseAuth = () => {
         navigate('/login');
       }
     })
+  }, []);
 
-  }, [])
 
   return {
     state,
   }
 }
+
+export default UserAuth;
