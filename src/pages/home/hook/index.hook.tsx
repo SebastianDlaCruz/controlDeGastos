@@ -1,4 +1,4 @@
-import { getServiceValue } from "@adapters/index.adapter";
+import { getPercentageOfValue } from "@adapters/index.adapter";
 import { UserContext } from "@context/UserContext.context";
 import { FirebaseStore } from "@fireFB/index.firebase";
 import { BillsModel } from "@models/index.model";
@@ -47,8 +47,8 @@ export const UseGetDataSpent = () => {
       "Ropa"],
     datasets: [
       {
-        label: '# of Votes',
-        data: [0, 0, 0, 0, 0, 0],
+        label: '%',
+        data: [],
         backgroundColor: [
           'rgba(255, 99, 133, 0.733)',
           'rgba(54, 162, 235, 0.2)',
@@ -86,14 +86,25 @@ export const UseGetDataSpent = () => {
 
   useEffect(() => {
     const amount = totalAmount();
-    const ropa = getServiceValue('ropa', bills);
-    const mascotas = getServiceValue('mascotas', bills);
-    const alimentos = getServiceValue('alimentos', bills);
-    const educacion = getServiceValue('educacion', bills);
-    const limpieza = getServiceValue('limpieza', bills);
-    console.log(ropa, limpieza, educacion, alimentos, mascotas);
-    console.log(amount);
-  }, [])
+    if (amount) {
+      const percentageRopa = getPercentageOfValue('ropa', bills, amount);
+      const percentageMascotas = getPercentageOfValue('mascotas', bills, amount);
+      const percentageAlimentos = getPercentageOfValue('alimentos', bills, amount);
+      const percentageEducacion = getPercentageOfValue('educacion', bills, amount);
+      const percentageLimpieza = getPercentageOfValue('limpieza', bills, amount);
+      console.log(amount)
+      console.log(percentageRopa, percentageMascotas, percentageLimpieza, percentageAlimentos, percentageEducacion);
+      setData(prevState => ({
+        ...prevState,
+        datasets: prevState.datasets.map(dataset => {
+          return {
+            ...dataset,
+            data: [percentageMascotas, percentageAlimentos, percentageLimpieza, percentageEducacion, percentageRopa],
+          };
+        }),
+      }));
+    }
+  }, [bills])
 
   return {
     data
