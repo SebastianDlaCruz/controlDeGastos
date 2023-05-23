@@ -1,4 +1,4 @@
-import { Card, CardBody, Text } from "@chakra-ui/react"
+import { Card, CardBody, Text } from "@chakra-ui/react";
 const TotalAmount = () => {
   return (
     <Card w={"200px"} h={"100px"}>
@@ -10,4 +10,4 @@ const TotalAmount = () => {
   )
 }
 
-export default TotalAmount
+export default TotalAmount;

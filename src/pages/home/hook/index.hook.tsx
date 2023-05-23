@@ -1,9 +1,9 @@
+import { getServiceValue } from "@adapters/index.adapter";
 import { UserContext } from "@context/UserContext.context";
 import { FirebaseStore } from "@fireFB/index.firebase";
 import { BillsModel } from "@models/index.model";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
-
 export const UseGetSpent = () => {
 
   const { state } = useContext(UserContext);
@@ -17,10 +17,9 @@ export const UseGetSpent = () => {
       querySnapshot.forEach((doc) => {
         template.push(doc.data() as BillsModel);
       });
-      setBills([...template]);
       setIsPending(true);
+      setBills([...template]);
     });
-
     return unsubscribe;
   }
 
@@ -29,10 +28,11 @@ export const UseGetSpent = () => {
     return () => {
       unsubscribe()
     }
-  }, [])
+  }, [isPending])
 
   return {
-    bills
+    bills,
+    isPending
   }
 }
 
@@ -71,16 +71,28 @@ export const UseGetDataSpent = () => {
     ],
   }
 
-  const { bills } = UseGetSpent();
+  const { bills, isPending } = UseGetSpent();
   const [data, setData] = useState(init);
 
   const totalAmount = () => {
-
-    bills.forEach(i => console.log(i));
+    let totalAmount = 0;
+    if (isPending) {
+      for (let i = 0; i < bills.length; i++) {
+        totalAmount = totalAmount + bills[i].amount;
+      }
+      return totalAmount;
+    }
   }
 
   useEffect(() => {
-    totalAmount();
+    const amount = totalAmount();
+    const ropa = getServiceValue('ropa', bills);
+    const mascotas = getServiceValue('mascotas', bills);
+    const alimentos = getServiceValue('alimentos', bills);
+    const educacion = getServiceValue('educacion', bills);
+    const limpieza = getServiceValue('limpieza', bills);
+    console.log(ropa, limpieza, educacion, alimentos, mascotas);
+    console.log(amount);
   }, [])
 
   return {

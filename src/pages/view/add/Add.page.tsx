@@ -71,11 +71,11 @@ const Add = () => {
           <FormLabel>Selecciones el tipo de servicio</FormLabel>
 
           <Stack spacing={3} >
-            <Select size='md'>
+            <Select size='md' {...register("services")}>
               {
                 services.map((item, index) => <option key={index} value={item}
                   style={{ backgroundColor: "#000" }}
-                  {...register("services")}>{item}</option>)
+                >{item}</option>)
               }
             </Select>
           </Stack>
