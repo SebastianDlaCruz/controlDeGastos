@@ -45,6 +45,9 @@
       ],
       "@fireFB/*": [
         "./src/firebase/*"
+      ],
+      "@models/*": [
+        "./src/models/*"
       ]
     },
     /* Linting */

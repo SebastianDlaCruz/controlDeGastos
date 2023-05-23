@@ -1,6 +1,7 @@
 import Login from "@pages/auth/login/Login.page";
 import Register from "@pages/auth/register/Register.page";
 import Home from "@pages/home/Home.page";
+import Add from "@pages/view/add/Add.page";
 import {
   createBrowserRouter,
 } from "react-router-dom";
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/añadir",
-        element: <div>añadir</div>
+        element: <Add />
       },
       {
         path: "/calendario",

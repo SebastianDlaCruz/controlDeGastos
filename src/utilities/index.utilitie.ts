@@ -1,4 +1,4 @@
-import { AuthModel, UserModel } from "../model/index.model";
+import { AuthModel, UserModel } from "../models/index.model";
 
 export const initialState: UserModel = {
   id: "",

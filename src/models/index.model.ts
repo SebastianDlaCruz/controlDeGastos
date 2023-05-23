@@ -10,3 +10,16 @@ export interface AuthModel {
 export interface UserModel extends AuthModel {
   photo: string;
 }
+
+
+export interface BillsModel {
+  name: string,
+  services: string,
+  amount: number,
+  description: string,
+  date: string
+}
+
+export interface EntityModel {
+  [key: string]: any
+}

@@ -102,6 +102,7 @@ const Register = () => {
               textDecoration={"underline"}
               color={"purple.700"}>Iniciar session</Link> </Text>
         </FormControl>
+
       </Box>
     </Box >
   )
